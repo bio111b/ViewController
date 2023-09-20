@@ -1,1 +1,34 @@
 
+import UIKit
+
+class ViewController: UIViewController {
+
+    @IBOutlet weak var questionTextField: UITextField!
+    @IBOutlet weak var responseTextField: UITextField!
+    @IBOutlet weak var resultsTextView: UITextView!
+
+    var questions = [String]()
+    var responses = [String]()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+
+    @IBAction func addQuestionButtonTapped(_ sender: UIButton) {
+        if let question = questionTextField.text, !question.isEmpty,
+           let response = responseTextField.text, !response.isEmpty {
+            questions.append(question)
+            responses.append(response)
+            questionTextField.text = ""
+            responseTextField.text = ""
+        }
+    }
+
+    @IBAction func analyzeButtonTapped(_ sender: UIButton) {
+        resultsTextView.text = ""
+        for i in 0..<questions.count {
+            resultsTextView.text += "Вопрос: \(questions[i])\n"
+            resultsTextView.text += "Ответ: \(responses[i])\n\n"
+        }
+    }
+}
